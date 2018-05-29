@@ -1,8 +1,10 @@
 from flask import render_template
 from . import auth
+from ..models import User
+from .forms import RegistrationForm,LoginForm
+from flask_login import login_user
 
-
-@auth.route('/register',methods = ["GET","POST"])
+@auth.route('/register',methods = ['GET','POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -26,3 +28,9 @@ def login():
 
     title = "Pitch login"
     return render_template('auth/login.html',login_form = login_form,title=title)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))
