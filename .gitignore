@@ -3,4 +3,7 @@ virtual/
 *.pyc
 start.sh
 .vscode/
+config.py
+
+
 
